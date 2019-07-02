@@ -31,7 +31,7 @@ export default class TodoListItem extends Component{
       let className = 'todo-list-item'
       if (done){
          className += ' done'
-      }
+      };
       if (important){
          className += ' important'
       }
@@ -53,7 +53,9 @@ export default class TodoListItem extends Component{
                      </button>
                      <button type='button'
                               className='btn btn-outline-danger btn-sm float-right'>
-                     <i className="fa fa-trash-o"></i>
+                     <i className="fa fa-trash-o"
+                        onClick = {this.props.onDeleted}
+                     ></i>
                      </button>
             
                
