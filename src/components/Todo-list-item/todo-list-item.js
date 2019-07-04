@@ -1,32 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './todo-list-item.css'
 
 
-export default class TodoListItem extends Component{
-   state = {
-      done: false,
-      important:false
-   }
+const TodoListItem =(props)=>{
 
-   onLabelClick =()=>{
-     this.setState(({done})=>{
-        return{
-           done : !done
-        }
-     })
-   }
 
-   onMarkImportant = ()=>{
-      this.setState(({important})=>{
-         return {
-            important : !important
-         }
-      })
-   }
-
-   render(){
-      const {label} = this.props
-      const {done, important} = this.state
+      const {label,onDeleted, onToggleDone,onToggleImportant, done, important} = props
 
       let className = 'todo-list-item'
       if (done){
@@ -35,34 +14,29 @@ export default class TodoListItem extends Component{
       if (important){
          className += ' important'
       }
-
             return (
             <span
             className = {className}>
                <span
               
                className='todo-list-item-label'
-               onClick = {this.onLabelClick}
+               onClick = {onToggleDone}
                >{label}
                </span>
                      <button type = 'button'
                      className='btn btn-outline-success btn-sm float-right ' >
                         <i className="fa fa-exclamation"
-                           onClick = {this.onMarkImportant}
+                           onClick = {onToggleImportant}
                         ></i>
                      </button>
                      <button type='button'
                               className='btn btn-outline-danger btn-sm float-right'>
                      <i className="fa fa-trash-o"
-                        onClick = {this.props.onDeleted}
+                        onClick = {onDeleted}
                      ></i>
-                     </button>
-            
-               
+                     </button>              
             </span>
-
             )
-   }
-}
-
+         }
+export default TodoListItem
 
